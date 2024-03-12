@@ -3,5 +3,5 @@ import { SideBar } from "@/components/SideBar";
 import React from "react";
 
 export default function Home() {
-  return null;
+  return <div>Home Page</div>;
 }

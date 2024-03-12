@@ -1,14 +1,17 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { Form, FormField } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { login } from "@/lib/lib";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useToast } from "@/components/ui/use-toast";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const FormLogin = () => {
+  const { toast } = useToast();
   const formSchema = z.object({
     email: z.string().email(),
     password: z.string(),
@@ -22,10 +25,27 @@ export const FormLogin = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    await login(values)
+      .then((response) => {
+        console.log(response);
+        toast({
+          title: "Login Successful",
+          description: "You are now logged in",
+          variant: "default",
+          duration: 2000,
+        });
+      })
+      .catch((error: AxiosError) => {
+        toast({
+          title: "Invalid Credentials",
+          description: "Please check your credentials and try again",
+          variant: "destructive",
+          duration: 2000,
+        });
+        return error.code;
+      });
   }
 
   return (

@@ -54,7 +54,7 @@ export const Header = () => {
   };
   return (
     <>
-      {pathName === "/login" && (
+      {pathName !== "/auth/login/" && (
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <Container>
             <div className="relative px-4 flex h-16 items-center justify-between w-full max-md:space-x-4">
