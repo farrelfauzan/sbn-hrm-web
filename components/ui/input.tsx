@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
-import { EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -31,13 +31,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {type === "password" && (
           <button
             className="absolute inset-y-0 right-0 flex items-center px-2 focus:outline-none"
-            onClick={togglePasswordVisibility}
+            onClick={(e) => {
+              e.preventDefault();
+              togglePasswordVisibility();
+            }}
           >
-            {showPassword ? (
-              <EyeOff size={16} />
-            ) : (
-              <EyeOff size={16} className="transform rotate-45" />
-            )}
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
           </button>
         )}
       </div>

@@ -17,6 +17,14 @@ export const FormLogin = () => {
     password: z.string(),
   });
 
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      form.handleSubmit(onSubmit)();
+    }
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -75,6 +83,7 @@ export const FormLogin = () => {
                 id="password"
                 placeholder="Password"
                 {...field}
+                onKeyDown={handleKeyDown}
               />
             </>
           )}
