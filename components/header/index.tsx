@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
-import Container from "./ui/container";
-import { Button } from "./ui/button";
+import Container from "../ui/container";
+import { Button } from "../ui/button";
 import { BellIcon, MenuIcon, Moon, SearchIcon, Sun } from "lucide-react";
 import React from "react";
 import {
@@ -11,10 +11,11 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "./ui/command";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+} from "../ui/command";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 export const Header = () => {
   const pathName = usePathname();
@@ -87,10 +88,17 @@ export const Header = () => {
                   <Moon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                   <span className="sr-only">Toggle Theme</span>
                 </Button>
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Avatar>
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    Place content for the popover here
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
             <CommandDialog open={openSearch} onOpenChange={setOpenSearch}>

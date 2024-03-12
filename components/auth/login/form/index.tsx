@@ -44,6 +44,8 @@ export const FormLogin = () => {
           description: "You are now logged in",
           variant: "default",
           duration: 2000,
+          className:
+            "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4",
         });
         router.replace("/");
       })
@@ -53,6 +55,8 @@ export const FormLogin = () => {
           description: "Please check your credentials and try again",
           variant: "destructive",
           duration: 2000,
+          className:
+            "top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4",
         });
         throw error;
       });

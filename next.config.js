@@ -17,7 +17,6 @@ const nextConfig = withBundleAnalyzer({
   basePath: "",
   typescript: {
     ignoreBuildErrors: true,
-    ignoreDevErrors: true,
   },
   reactStrictMode: false,
 });

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header";
 import { SideBar } from "@/components/SideBar";
 import { Toaster } from "@/components/ui/toaster";
 import { cookies } from "next/headers";
@@ -24,7 +24,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {token && <Header />}
+          {/* {token && <Header />} */}
+          <Header />
           {children}
           <Toaster />
         </ThemeProvider>
