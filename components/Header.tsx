@@ -18,7 +18,6 @@ import { usePathname } from "next/navigation";
 
 export const Header = () => {
   const pathName = usePathname();
-  console.log("ini pathName", pathName);
   const { theme, setTheme } = useTheme();
   const [openSearch, setOpenSearch] = React.useState<boolean>(false);
 

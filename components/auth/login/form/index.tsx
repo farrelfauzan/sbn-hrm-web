@@ -8,9 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useToast } from "@/components/ui/use-toast";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export const FormLogin = () => {
+  const router = useRouter();
   const { toast } = useToast();
   const formSchema = z.object({
     email: z.string().email(),
@@ -34,7 +36,6 @@ export const FormLogin = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     await login(values)
       .then((response) => {
         console.log(response);
@@ -44,15 +45,16 @@ export const FormLogin = () => {
           variant: "default",
           duration: 2000,
         });
+        router.replace("/");
       })
-      .catch((error: AxiosError) => {
+      .catch((error: AxiosError | any) => {
         toast({
-          title: "Invalid Credentials",
+          title: error.response?.data.message,
           description: "Please check your credentials and try again",
           variant: "destructive",
           duration: 2000,
         });
-        return error.code;
+        throw error;
       });
   }
 
