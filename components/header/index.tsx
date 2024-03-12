@@ -2,7 +2,14 @@
 import Link from "next/link";
 import Container from "../ui/container";
 import { Button } from "../ui/button";
-import { BellIcon, MenuIcon, Moon, SearchIcon, Sun } from "lucide-react";
+import {
+  BellIcon,
+  Calendar,
+  MenuIcon,
+  Moon,
+  SearchIcon,
+  Sun,
+} from "lucide-react";
 import React from "react";
 import {
   CommandDialog,
@@ -111,6 +118,10 @@ export const Header = () => {
                     .map((item, index) => (
                       <CommandItem key={index}>{item.label}</CommandItem>
                     ))}
+                  {/* <CommandItem>
+                    <Calendar className="mr-2 h-4 w-4" />
+                    <span>Calendar</span>
+                  </CommandItem> */}
                 </CommandGroup>
               </CommandList>
             </CommandDialog>
